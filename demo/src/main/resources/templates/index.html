@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>カテゴリマスタメンテ画面</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>カテゴリID</th>
+            <th>名称</th>
+        </tr>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.category_id}"></td>
+            <td th:text="${category.name}"></td>
+        </tr>
+    </table>
+</body>
+</html>
