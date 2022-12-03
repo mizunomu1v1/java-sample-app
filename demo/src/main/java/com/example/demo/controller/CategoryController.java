@@ -16,11 +16,11 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    // http://localhost:8080/ の時に呼ばれる
-    @RequestMapping("/")
+    // http://localhost:8080/CategoryMaster の時に呼ばれる
+    @RequestMapping("/CategoryMaster")
     public String init(Model model) {
         List<Category> category = categoryService.selectCategory();
         model.addAttribute("categories", category);
-        return "index";
+        return "CategoryMaster";
     }
 }
