@@ -7,10 +7,14 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.entity.Category;
 
 /**
- * DBを操作するインターフェース
+ * カテゴリ Mapper
  */
 @Mapper
 public interface CategoryMapper {
-
+    /**
+     * カテゴリマスタ検索
+     * 
+     * @return 検索結果
+     */
     public List<Category> selectCategory();
 }
