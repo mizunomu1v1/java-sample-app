@@ -11,16 +11,15 @@ import com.example.demo.entity.Category;
 import com.example.demo.service.CategoryService;
 
 @Controller
-public class CategoryController {
+public class TodoController {
 
     @Autowired
     private CategoryService categoryService;
 
-    // http://localhost:8080/CategoryMaster の時に呼ばれる
-    @RequestMapping("/CategoryMaster")
+    @RequestMapping("/Todo")
     public String init(Model model) {
         List<Category> category = categoryService.selectCategory();
         model.addAttribute("categories", category);
-        return "CategoryMaster";
+        return "Todo";
     }
 }
