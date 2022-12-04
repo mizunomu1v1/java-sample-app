@@ -5,23 +5,28 @@
   </head>
   <body>
     <header th:replace="header::header"></header>
-    <h1 class="my-3 ml-3">カテゴリマスタ</h1>
+    <h1 class="m-3">カテゴリマスタ</h1>
 
-    <div class="col-5 ml-3">
-      <table class="table table-sm">
-         
-        <thead class="thead-light">
-          <tr>
-            <th>カテゴリID</th>
-            <th>名称</th>
-          </tr>
-        </thead>
-        <tr th:each="category : ${categories}">
-          <td th:text="${category.category_id}"></td>
-          <td th:text="${category.name}"></td>
-        </tr>
-      </table>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-auto">
+          <table class="table table-sm m-3 ">
+             
+            <thead class="thead-light">
+              <tr>
+                <th>カテゴリID</th>
+                <th>名称</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="category : ${categories}">
+                <td th:text="${category.category_id}"></td>
+                <td th:text="${category.name}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-
   </body>
 </html>
