@@ -9,7 +9,9 @@
         SELECT 
            todo_id
           ,task 
+          ,check_flag 
         FROM todo
+        ORDER BY todo_id
     </select>
 
     <insert id="insertTodo" parameterType="com.example.demo.entity.Todo">
@@ -17,14 +19,25 @@
          (
            todo_id
           ,task 
+          ,check_flag 
           ,last_update
           )
           VALUES (
            nextval('todo_seq')
           ,#{task} 
+          ,FALSE
           ,CURRENT_TIMESTAMP
           )
     </insert>
+
+    <update id="updateTodo" parameterType="com.example.demo.entity.Todo">
+        UPDATE todo
+        SET check_flag = 
+          CASE WHEN TRUE THEN check_flag = FALSE
+               WHEN FALSE THEN check_flag = TRUE
+          END 
+        WHERE todo_id = #{todo_id} 
+    </update>
 
     <delete id="deleteTodo" parameterType="com.example.demo.entity.Todo">
         DELETE FROM todo

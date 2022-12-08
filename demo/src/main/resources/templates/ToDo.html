@@ -10,20 +10,20 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-5 ml-5">
+        <div class="col-md-5 ml-5">
           <form method="post" th:action="@{/insertTodo}">
-          <div class="input-group mb-3">
-            <input type="task" name="task" class="form-control" />
-            <button
-              class="btn btn-outline-secondary"
-              type="submit"
-              id="button-add"
-              value="Submit"
-            >
-              タスク追加
-            </button>
+            <div class="input-group mb-3">
+              <input type="task" name="task" class="form-control" />
+              <button
+                class="btn btn-outline-secondary"
+                type="submit"
+                id="button-add"
+                value="Submit"
+              >
+                タスク追加
+              </button>
+            </div>
           </form>
-          </div>
         </div>
       </div>
 
@@ -40,17 +40,41 @@
             </thead>
 
             <tbody id="todoLists">
-              <tr th:each="todo : ${todos}">
+              <tr th:each="todo : ${todos}" >
                 <td th:text="${todoStat.count}"></td>
+
                 <td>
-                  <input type="checkbox" th:id="${todo.todo_id}" name="checkbox02" />
-                  <label th:for="${todo.todo_id}" class="checkbox02" ><span th:text="${todo.task}" /></label>
+                  <input
+                    type="checkbox"
+                    th:id="${todo.todo_id}"
+                    name="checkbox02"
+                    th:checked="${todo.check_flag}"
+                    disabled 
+                  />
+                  <label th:for="${todo.todo_id}" class="checkbox02"
+                    ><span th:text="${todo.task}"
+                  /></label>
                 </td>
-                <td><button class="btn" type="submit">編集</button></td>
+
+                <form method="post" th:action="@{/updateTodo}">
+                  <td>
+                    <button class="btn" type="submit">チェック</button>
+                    <input
+                      type="hidden"
+                      name="todo_id"
+                      th:value="${todo.todo_id}"
+                    />
+                  </td>
+                </form>
+
                 <form method="post" th:action="@{/deleteTodo}">
                   <td>
                     <button class="btn" type="submit">削除</button>
-                    <input type="hidden" name="todo_id" th:value="${todo.todo_id}"/>
+                    <input
+                      type="hidden"
+                      name="todo_id"
+                      th:value="${todo.todo_id}"
+                    />
                   </td>
                 </form>
               </tr>

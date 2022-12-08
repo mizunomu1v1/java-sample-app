@@ -10,6 +10,8 @@ public interface TodoService {
 
     public void insertTodo(Todo todo);
 
+    public void updateTodo(Todo todo);
+
     public void deleteTodo(Todo todo);
 
 }
