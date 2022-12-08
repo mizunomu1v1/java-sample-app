@@ -31,6 +31,12 @@ public class TodoController {
         return "redirect:Todo";
     }
 
+    @PostMapping("/updateTodo")
+    public String updateTodo(@ModelAttribute Todo todo) {
+        todoService.updateTodo(todo);
+        return "redirect:Todo";
+    }
+
     @PostMapping("/deleteTodo")
     public String deleteTodo(@ModelAttribute Todo todo) {
         todoService.deleteTodo(todo);
