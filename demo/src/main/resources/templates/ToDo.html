@@ -20,7 +20,7 @@
                 id="button-add"
                 value="Submit"
               >
-                タスク追加
+                <i class="bi bi-pencil-fill"></i>
               </button>
             </div>
           </form>
@@ -29,7 +29,7 @@
 
       <div class="col">
         <div class="form-check">
-          <table class="table" id="todoList">
+          <table class="table table-sm" id="todoList">
             <thead>
               <tr>
                 <th>No.</th>
@@ -40,25 +40,26 @@
             </thead>
 
             <tbody id="todoLists">
-              <tr th:each="todo : ${todos}" >
+              <tr th:each="todo : ${todos}">
                 <td th:text="${todoStat.count}"></td>
 
                 <td>
-                  <input
-                    type="checkbox"
-                    th:id="${todo.todo_id}"
-                    name="checkbox02"
-                    th:checked="${todo.check_flag}"
-                    disabled 
-                  />
-                  <label th:for="${todo.todo_id}" class="checkbox02"
-                    ><span th:text="${todo.task}"
+                  <label th:for="${todo.todo_id}" class=""
+                    ><span
+                      th:class="${todo.check_flag} ? 'strike'"
+                      th:text="${todo.task}"
                   /></label>
                 </td>
 
                 <form method="post" th:action="@{/updateTodo}">
                   <td>
-                    <button class="btn" type="submit">チェック</button>
+                    <button class="btn" type="submit">
+                      <i
+                        th:class="${todo.check_flag} ? 'bi bi-check-square':'bi bi-square'"
+                        style="font-size: 1.2rem"
+                      ></i>
+                    </button>
+
                     <input
                       type="hidden"
                       name="todo_id"
@@ -69,7 +70,9 @@
 
                 <form method="post" th:action="@{/deleteTodo}">
                   <td>
-                    <button class="btn" type="submit">削除</button>
+                    <button class="btn" type="submit">
+                      <i class="bi bi-trash-fill" style="color: #8c87ae"></i>
+                    </button>
                     <input
                       type="hidden"
                       name="todo_id"
